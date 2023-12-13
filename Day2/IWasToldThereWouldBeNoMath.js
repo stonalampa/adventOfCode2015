@@ -9,7 +9,7 @@ const part1 = () => {
         const side1 = 2 * l * w;
         const side2 = 2 * w * h;
         const side3 = 2 * h * l;
-        const slack = Math.min(side1, side2, side3)/2; // * /2 because we have 2 * for each side
+        const slack = Math.min(side1, side2, side3)/2; // * dividing with 2 because we have times 2 for each side
         sum += side1 + side2 + side3 + slack;
     })
     console.log("Part 1 - Total square feet:", sum);
