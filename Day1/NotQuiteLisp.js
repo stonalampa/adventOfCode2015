@@ -1,7 +1,6 @@
-const fs = require('fs');
+const { dataImporter } = require('../DataImporter');
+const data = dataImporter('')
 
-const filePath = 'input.txt';
-const data = fs.readFileSync(filePath, 'utf8').split('');
 
 const part1 = () => {
     try {
@@ -9,14 +8,14 @@ const part1 = () => {
         data.forEach(element => {
             if (element === '(') {
                 floor++;
-            } else if (element ===')') {
+            } else if (element === ')') {
                 floor--;
             }
         });
         console.log("Part 1 - Ends up on floor:", floor);
-      } catch (err) {
+    } catch (err) {
         console.error('Error reading file:', err);
-      }
+    }
 }
 
 const part2 = () => {
@@ -34,9 +33,9 @@ const part2 = () => {
                 break;
             }
         }
-      } catch (err) {
+    } catch (err) {
         console.error('Error reading file:', err);
-      }
+    }
 }
 
 

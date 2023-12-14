@@ -1,7 +1,5 @@
-const fs = require("fs");
-
-const filePath = "input.txt";
-const data = fs.readFileSync(filePath, "utf8").split("");
+const { dataImporter } = require('../DataImporter');
+const data = dataImporter('')
 
 const houseCoordinates1 = new Map();
 const houseCoordinates2 = new Map();
