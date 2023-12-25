@@ -60,5 +60,6 @@ const part2 = () => {
 
     console.log("Part 2 - Total brightness of lights:", sum);
 }
+
 part1();
 part2();
