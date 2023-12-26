@@ -34,8 +34,9 @@ Object.keys(reindeerValues).forEach(reindeer => {
     reindeerDistances[reindeer] = calculateDistance(reindeer, 2503);
 });
 
-Object.values(reindeerDistances).sort((a, b) => b - a);
-console.log("Part 1 - max distance:", Object.entries(reindeerDistances)[0]);
+console.log("Part 1 - max distance:",
+    Object.entries(reindeerDistances)
+        .sort((a, b) => b[1] - a[1])[0]);
 
 // * Part 2
 const determineIfFlying = (reindeer, second) => {
@@ -73,4 +74,7 @@ for (let i = 0; i < 2503; i++) {
         reindeerPoints[reindeer] ? reindeerPoints[reindeer]++ : reindeerPoints[reindeer] = 1;
     });
 }
-console.log("Part 2 - max points:", Object.entries(reindeerPoints).sort((a, b) => b[1] - a[1])[0]);
+
+console.log("Part 2 - max points:",
+    Object.entries(reindeerPoints)
+        .sort((a, b) => b[1] - a[1])[0]);
