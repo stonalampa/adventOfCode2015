@@ -35,27 +35,42 @@ Object.keys(reindeerValues).forEach(reindeer => {
 });
 
 Object.values(reindeerDistances).sort((a, b) => b - a);
-console.log("Part 1 - max distance: ", Object.entries(reindeerDistances)[0]);
+console.log("Part 1 - max distance:", Object.entries(reindeerDistances)[0]);
 
 // * Part 2
-const reindeerPoints = {};
-const reindeerDistancesArray = {};
+const determineIfFlying = (reindeer, second) => {
+    const { flyTime, restTime } = reindeerValues[reindeer];
+    const cycleTime = flyTime + restTime;
+    const remainingTime = second % cycleTime;
+    const isFlying = remainingTime < flyTime;
+    return isFlying;
+};
 
+const calculateDistanceBySecond = (reindeer, timeInSeconds = 2503) => {
+    const { speed } = reindeerValues[reindeer];
+    const distances = [];
+    let distance = 0;
+    for (let i = 0; i < timeInSeconds; i++) {
+        if (determineIfFlying(reindeer, i)) {
+            distance += speed;
+        }
+        distances.push(distance);
+    }
+    return distances;
+};
+
+const reindeerDistancesBySeconds = {}
 Object.keys(reindeerValues).forEach(reindeer => {
-    reindeerPoints[reindeer] = 0;
-    reindeerDistancesArray[reindeer] = [];
-})
+    reindeerDistancesBySeconds[reindeer] = calculateDistanceBySecond(reindeer);
+});
 
+const reindeerPoints = {};
 for (let i = 0; i < 2503; i++) {
-    Object.keys(reindeerValues).forEach(reindeer => {
-        reindeerDistancesArray[reindeer].push(calculateDistance(reindeer, i + 1));
-    })
+    const distances = Object.keys(reindeerValues).map(reindeer => reindeerDistancesBySeconds[reindeer][i]);
+    const maxDistance = Math.max(...distances);
+    const reindeerWithMaxDistance = Object.keys(reindeerValues).filter(reindeer => reindeerDistancesBySeconds[reindeer][i] === maxDistance);
+    reindeerWithMaxDistance.forEach(reindeer => {
+        reindeerPoints[reindeer] ? reindeerPoints[reindeer]++ : reindeerPoints[reindeer] = 1;
+    });
 }
-
-for (let i = 0; i < 2503; i++) {
-    const maxDistance = Math.max(...Object.values(reindeerDistancesArray).map(arr => arr[i]));
-    const reindeersWithMaxDistance = Object.keys(reindeerDistancesArray).find(reindeer => reindeerDistancesArray[reindeer][i] === maxDistance);
-
-    reindeerPoints[reindeersWithMaxDistance]++;
-}
-console.log(Object.values(reindeerPoints).sort((a, b) => b - a)[0]);
+console.log("Part 2 - max points:", Object.entries(reindeerPoints).sort((a, b) => b[1] - a[1])[0]);
