@@ -26,7 +26,7 @@ const rings = [
 const createAllPossibleCombos = () => {
     const allCombos = [];
 
-    // 1 weapon, 1 armor, 2 rings, <100 cost
+    // 1 weapon, 1 armor, 2 rings
     for (let weapon of weapons) {
         for (let armor of armors) {
             for (let ring1 of rings) {
@@ -39,7 +39,7 @@ const createAllPossibleCombos = () => {
         }
     }
 
-    // 1 weapon, 1 armor, 1 ring, <100 cost
+    // 1 weapon, 1 armor, 1 ring
     for (let weapon of weapons) {
         for (let armor of armors) {
             for (let ring of rings) {
@@ -48,14 +48,14 @@ const createAllPossibleCombos = () => {
         }
     }
 
-    // 1 weapon, 1 armor 0 ring, <100 cost
+    // 1 weapon, 1 armor 0 ring
     for (let weapon of weapons) {
         for (let armor of armors) {
             allCombos.push({ weapon, armor });
         }
     }
 
-    // 1 weapon 0 armor 2 rings, <100 cost
+    // 1 weapon, 0 armor, 2 rings
     for (let weapon of weapons) {
         for (let ring1 of rings) {
             for (let ring2 of rings) {
@@ -66,14 +66,14 @@ const createAllPossibleCombos = () => {
         }
     }
 
-    // 1 weapon 0 armor 1 ring, <100 cost
+    // 1 weapon, 0 armor, 1 ring
     for (let weapon of weapons) {
         for (let ring of rings) {
             allCombos.push({ weapon, ring });
         }
     }
 
-    // 1 weapon 0 armor 0 ring, <100 cost
+    // 1 weapon, 0 armor, 0 ring
     for (let weapon of weapons) {
         allCombos.push({ weapon });
     }

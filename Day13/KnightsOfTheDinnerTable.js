@@ -57,7 +57,7 @@ const calculateHappiness = (combo) => {
     return happiness;
 }
 
-
+// * Part 1 - No me sentences in the input
 const allCombos1 = createAllCombination(['Alice', 'Bob', 'Carol', 'David', 'Eric', 'Frank', 'George', 'Mallory']);
 let maxHappiness1 = 0;
 
